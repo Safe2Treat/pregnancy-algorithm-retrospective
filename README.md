@@ -2,7 +2,8 @@ The code provided in this repository was constructed to identify a cohort of pre
 
 All of the SAS files are extensively commented to facilitate use, but we provide a description below for getting started. This project was conducted on a remote server through a local interface. Some lines of coded were included to create the connection between the local SAS session and remote server. This led to some lines that needed to be run locally, though the majority were run directly to the server. This should be indicated in the files.
 
-MarketScan Pregnancy Cohort_protocol.pdf - This file provides a detailed overview of the algorithm and the associated programs for implementing steps. 
+**Algorithm Description**
+`MarketScan Pregnancy Cohort_protocol.pdf` - This file is saved on the Wiki page and provides a detailed overview of the algorithm and the associated programs for implementing steps. 
 
 **Codelist**
 `Delivery_GA_PregMarker_Codes_forGitHub.xlsx` -- This file contains all the reference code lists for pregnancy markers, pregnancy outcomes, and gestational age. We create SAS files for these code lists in the 00_create_code_refs.sas program.
