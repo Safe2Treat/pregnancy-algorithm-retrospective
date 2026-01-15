@@ -1,4 +1,4 @@
-The code provided in this repository was constructed to identify a cohort of pregnancies based upon observed outcomes (e.g., live or stillbirth) from MarketScan claims data. Go to the Wiki page for detailed documentation for implementing this algorithm.
+The code provided in this repository was constructed to identify a cohort of pregnancies based upon observed outcomes (e.g., live or stillbirth) in MarketScan claims data. Go to the Wiki page for detailed documentation for implementing this algorithm.
 
 All of the SAS files are extensively commented to facilitate use, but we provide a description below for getting started. This project was conducted on a remote server through a local interface. Some lines of coded were included to create the connection between the local SAS session and remote server. This led to some lines that needed to be run locally, though the majority were run directly to the server. This should be indicated in the files.
 
