@@ -12,7 +12,7 @@ All of the SAS files are extensively commented to facilitate use, but we provide
 
 We create SAS files for these code lists in the `00_create_code_refs.sas` program.
 
-Given the important shifts in legislation and policy surrounding induced abortion and reproductive freedom and autonomy in the U.S., we have modified this code such that it does not identify induced abortions specifically. Instead, induced abortions are included under "Unspecified Abortions". This category can include induced abortions for a variety of indications and spontaneous abortions where the codes were unclear. To identify induced abortions, users must modify the pregnancy outcome codelist ("delivery" sheet) to determine which codes they believe identify an induced abortion. Change the value of "ALG" (Excel column) for these codes to "IAB".
+Given the important shifts in legislation and policy surrounding induced abortion and reproductive freedom and autonomy in the U.S., we have modified this code such that it does not identify induced abortions. Instead, induced abortions are included under "Unspecified Abortions". This category can include induced abortions for a variety of indications and spontaneous abortions where the codes were unclear. To identify induced abortions, users must modify the pregnancy outcome codelist (i.e., codes in the "delivery" sheet) to determine which codes identify an induced abortion. Change the value of "ALG" (Excel column) for these codes to "IAB".
 
 **Pregnancy Algorithm**
 
