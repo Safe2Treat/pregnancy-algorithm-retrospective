@@ -10,7 +10,7 @@ All of the SAS files are extensively commented to facilitate use, but we provide
 
 `Delivery_GA_PregMarker_Codes_forGitHub.xlsx` -- This file contains all the reference code lists for pregnancy markers, pregnancy outcomes, and gestational age. 
 
-We create SAS files for these code lists in the 00_create_code_refs.sas program.
+We create SAS files for these code lists in the `00_create_code_refs.sas` program.
 
 Given the important shifts in legislation and policy surrounding induced abortion and reproductive freedom and autonomy in the U.S., we have modified this code such that it does not identify induced abortions specifically. Instead, induced abortions are included under "Unspecified Abortions". This category can include induced abortions for a variety of indications and spontaneous abortions where the codes were unclear. To identify induced abortions, users must modify the pregnancy outcome codelist ("delivery" sheet) to determine which codes they believe identify an induced abortion. Change the value of "ALG" (Excel column) for these codes to "IAB".
 
