@@ -57,8 +57,8 @@ options sasautos=(SASAUTOS "/local/projects/marketscan_preg/raw_data/programs/ma
 
 options mprint;
 
-libname ld '/local/data/master/marketscanccae/random1pct/ccae'; /* location where the CCAEx datafiles are location */ 
-libname mw '/local/projects/marketscan_preg/raw_data/data/random1pct'; /*where I want to save the data */ 
+libname ld '/local/data/master/marketscanccae/full/ccae'; /* location where the CCAEx datafiles are location */ 
+libname mw '/local/projects/marketscan_preg/raw_data/data/full'; /*where I want to save the data */ 
 
 
 

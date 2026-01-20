@@ -65,7 +65,7 @@ TABLE OF CONTENTS:
 *Run setup macro and define libnames;
 options sasautos=(SASAUTOS "/local/projects/marketscan_preg/raw_data/programs/macros");
 /*change "saveLog=" to "Y" when program is closer to complete*/
-%setup(sample=full, programname=ailes_suarez_modification/02_infant_cohort, savelog=Y)
+%setup(sample=random1pct, programname=ailes_suarez_modification/02_infant_cohort, savelog=Y)
 
 options mprint minoperator;
 
@@ -226,7 +226,7 @@ run;
 
 
 /*Identify continuous enrollment periods - Create CESEG variable
-	CESEG(flag): Each gap in continuous eligibility greater than 31 days – 
+	CESEG(flag): Each gap in continuous eligibility greater than 31 days ï¿½ 
 	Increasing count for each new continuous enrollment period (i.e., the 
 	same value for each month within a continuous enrollment period).
 */
@@ -1075,26 +1075,60 @@ run;
 
 
 /*Grab all the pregnancy-related codes*/
+
+*Create the code dataset;
+data codes;
+length code $17; *CDL: Added;
+format code $17.; *CDL: Added;
+set covref.delivery covref.ga (rename = (codecat=code_version)) covref.preg_markers; *CDL: ADDED rename here;
+
+	if alg in ("LB","LBSB","UNK") then delivery=1;
+		else delivery = 0;
+
+	where code ne "";
+run;
+
+*Now group by code and code_version;
 proc sql;
 	create table pregnancy_codes as
 	select code, code_version, max(delivery) as delivery
-	from (select code, code_version, case
-										when alg IN ("LB","LBSB","UNK") then 1
-										else 0
-										end as delivery
-			from covref.delivery
-			union
-			select code, codecat as code_version, 0 as delivery
-			from covref.ga
-			union
-			select code, code_version, 0 as delivery
-			from covref.preg_markers)
-	where code ne ""
+	from codes
 	group by code, code_version
 	;
 	quit;
 
-
+/*data pregnancy_codes_test; *UPDATE 1.16.2026: LS, re-wrote sql step below to circumvent error;*/
+/*	length code $17; *CDL: Added;*/
+/*	format code $17.; *CDL: Added;*/
+/*	set covref.delivery covref.ga (rename = (codecat=code_version)) covref.preg_markers; *CDL: ADDED rename here;*/
+/*	*/
+/*	where code ne " ";*/
+/*	*/
+/*	if alg in ("LB","LBSB","UNK") then delivery=1;*/
+/*		else delivery=0;*/
+/*	*/
+/*run;*/
+/*old code that produces error: Ambiguous reference, column code_version is in more than one table.*/
+/* proc sql; */
+/* 	create table pregnancy_codes as */
+/* 	select code, code_version, max(delivery) as delivery */
+/* 	from (select code, code_version, case */
+/* 										when alg IN ("LB","LBSB","UNK") then 1 */
+/* 										else 0 */
+/* 										end as delivery */
+/* 			from covref.delivery */
+/* 			union */
+/* 			select code, codecat as code_version, 0 as delivery */
+/* 			from covref.ga */
+/* 			union */
+/* 			select code, code_version, 0 as delivery */
+/* 			from covref.preg_markers) */
+/* 	where code ne "" */
+/* 	group by code, code_version */
+/* 	; */
+/* 	quit; */
+	;;
+	
 /*Subset the reference pregnancy outcome file to only deliveries*/
 /*data delivery_codes;*/
 /*set covref.delivery;*/

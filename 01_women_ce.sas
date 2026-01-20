@@ -61,7 +61,7 @@ TABLE OF CONTENTS:
 *Run setup macro and define libnames;
 options sasautos=(SASAUTOS "/local/projects/marketscan_preg/raw_data/programs/macros");
 /*change "saveLog=" to "Y" when program is closer to complete*/
-%setup(sample= 1pct, programname=ailes_suarez_modification/01_women_ce, savelog=N)
+%setup(sample= full, programname=ailes_suarez_modification/01_women_ce, savelog=N)
 
 options mprint;
 
@@ -72,7 +72,7 @@ UNC stores all data in one folder with year in the file name.;
 %macro assign_lib(sample);
    %DO yr=2000 %TO 2023; libname in&yr "/local/data/master/marketscanccae/&sample/ccae"; %END;
 %mend;
-%assign_lib(random1pct)
+%assign_lib(full)
 
 
 *LIST OF ALL DATA INPUTS;
@@ -119,7 +119,7 @@ INPUT:
 - dat - list of the data files with the monthly enrollment data (in lib). Input later: &file_t.
 */
 
-%macro drug (name = elig_woman, lib = , dat = );
+%macro drug (name = , lib = , dat = );
 
 	%*Create a temporary (work lib) dataset for each monthly enrollment file for each year. Subset to those with non-missing enrolid
 	values and where sex is female.;
@@ -166,7 +166,11 @@ INPUT:
 
 
 *Now, create the stacked enrollment datasets;
-%drug(elig_woman,&libnames_t,&file_t);
+%drug(
+  name = elig_woman,
+  lib  = &libnames_t,
+  dat  = &file_t
+);
 
 
 

@@ -51,22 +51,22 @@ TABLE OF CONTENTS:
 
 
 /*run this locally if you need to log onto the N2 server.*/
-SIGNOFF;
+/*SIGNOFF;
 %LET server=n2.schsr.unc.edu 1234; 
 options comamid=tcp remote=server; 
-signon username=_prompt_;
+signon username=_prompt_;*/
 
 *Run setup macro and define libnames;
 options sasautos=(SASAUTOS "/local/projects/marketscan_preg/raw_data/programs/macros");
 /*change "saveLog=" to "Y" when program is closer to complete*/
-%setup(sample= random1pct, programname=00_create_code_refs, savelog=N)
+%setup(sample= full, programname=00_create_code_refs, savelog=N)
 
 /*Create local mirrors of the server libraries*/
-libname lout slibref=out server=server;
+/*libname lout slibref=out server=server;
 libname lwork slibref = work server = server;
 libname lcovref slibref = covref server = server;
 libname lder slibref = der server=server;
-libname lraw slibref = raw server=server;
+libname lraw slibref = raw server=server;*/
 
 
 

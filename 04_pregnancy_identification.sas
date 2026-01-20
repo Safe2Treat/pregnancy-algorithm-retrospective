@@ -67,7 +67,7 @@ signon username=_prompt_;*/
 *Run setup macro and define libnames;
 options sasautos=(SASAUTOS "/local/projects/marketscan_preg/raw_data/programs/macros");
 /*change "saveLog=" to "Y" when program is closer to complete*/
-%setup(sample=full, programname=ailes_suarez_modification/04_pregnancy_identification, savelog=Y)
+%setup(sample=full, programname=ailes_suarez_modification/04_pregnancy_identification, savelog=N)
 
 options mprint;
 
@@ -476,7 +476,7 @@ data preg4;
 		*Unspecified abortion;
 		else if eop_sab>0 and eop_iab>0 and num_inf=0 then outcome='ABN';
 		else if eop_abn>1 and num_inf=0 and eop_sb<1 then outcome='ABN';
-		else if eop_abn>1 and pregmark=1 and num_inf=0 and eop_sb<1 then outcome='ABN';
+		else if eop_abn>0 and pregmark=1 and num_inf=0 and eop_sb<1 then outcome='ABN';
 
 		*Stillbirth;
 		else if eop_sb>0 and eop_unk>0 and num_inf=0 then outcome='SB';
